@@ -1,0 +1,7 @@
+mindsdb_sdk
+fastapi
+uvicorn
+pydantic
+pandas
+requests
+openai

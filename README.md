@@ -27,6 +27,30 @@ Think pharmacy AI with specialized medical knowledge. It's deeply integrated wit
 - 🎙️ **Voice Interaction** - Talk to RxQuery for hands-free health queries
 - 🎨 **Beautiful UI/UX** - Chat-based interface with real-time updates
 
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS, Framer Motion, Shadcn, MVPBlocks
+- **Backend**: FastAPI, Python, Pydantic
+- **🧠 MindsDB**
+
+   -  `CREATE KNOWLEDGE_BASE, INSERT INTO, CREATE INDEX`(chromadb)
+
+   - **CHAINED Multi AGENTS** using `CREATE AGENT` for each feature (/classify, /recommend, /side-effects, etc.)
+
+   - `EVALUATE KNOWLEDGE_BASE` with Groq for document scoring
+
+   - `CREATE JOB` to ingest drug data periodically
+   - `SELECT ... WHERE content LIKE ` in semanticss!
+
+   - `metadata_columns` to enable hybrid semantic + SQL filtering
+
+   - `CREATE MODEL rx_assistant` with OpenAI for reasoning and classification
+
+   - **KB_EVALUATE**: Groq LLM, **AI TABLES**: OpenAI, **AGENTS**: OpenAI, Ollama (experimental, model removed)
+   - 🧪 Editor: Our MindsDB SQL Editor code is included as reference for building/debugging Agents and KB queries.
+
+p.s **KNOWLEDGE BASES, AGENTS AND AI TABLES** powered by MindsDB!
+
 ### 🛠️ MindsDB Deep Dive~
 RxQuery leverages MindsDB's advanced AI capabilities, especially:
 - 📚 Knowledge Bases → Drug databases and symptom mappings to help agents answer accurately
@@ -74,30 +98,6 @@ npm run dev
 | `/allergy`      | `/allergy penicillin`     | → *"Try Azithromycin (macrolide class)"*              |
 | `/general`      | `/general tired and dizzy`| → *"Drink warm water, eat light foods and take dolo." |              |
 
-
-## 🛠️ Tech Stack
-
-- **Frontend**: Next.js 14, TypeScript, Tailwind CSS, Framer Motion, Shadcn, MVPBlocks
-- **Backend**: FastAPI, Python, Pydantic
-- **🧠 MindsDB**
-
-   -  `CREATE KNOWLEDGE_BASE, INSERT INTO, CREATE INDEX`(chromadb)
-
-   - **CHAINED Multi AGENTS** using `CREATE AGENT` for each feature (/classify, /recommend, /side-effects, etc.)
-
-   - `EVALUATE KNOWLEDGE_BASE` with Groq for document scoring
-
-   - `CREATE JOB` to ingest drug data periodically
-   - `SELECT ... WHERE content LIKE ` in semanticss!
-
-   - `metadata_columns` to enable hybrid semantic + SQL filtering
-
-   - `CREATE MODEL rx_assistant` with OpenAI for reasoning and classification
-
-   - **KB_EVALUATE**: Groq LLM, **AI TABLES**: OpenAI, **AGENTS**: OpenAI, Ollama (experimental, model removed)
-   - 🧪 Editor: Our MindsDB SQL Editor code is included as reference for building/debugging Agents and KB queries.
-
-p.s **KNOWLEDGE BASES, AGENTS AND AI TABLES** powered by MindsDB!
 
 ## 🎥 Screenshots
 

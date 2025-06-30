@@ -10,22 +10,40 @@ UPCOMING....
 
 ## 🎯 What is RxQuery?
 
-RxQuery is an intelligent, AI-powered drug information finder and medicine assistant (think of a pharmacy?) that provides instant, reliable drug consultation through an intuitive interface. Think pharmacy AI with specialized medical knowledge. You ask your Query and RxQuery answers. 
+RxQuery is an intelligent, AI-powered drug information finder and medicine assistant (think of a pharmacy simulator?) that provides instant, reliable drug consultation through an intuitive interface. 
+Think pharmacy AI with specialized medical knowledge. It's deeply integrated with MindsDB's Knowledge Bases, Agents, AI Tables, and Evaluation Tools, for reliable drug insights powered by semantic search and LLM Agents!
 
-( note: please consult actual doctors, thanks :) )
+⚠️ Note: RxQuery.AI is not a substitute for professional medical advice. Please consult actual doctors, thanks :)
 
 ### ✨ Key Features
-
+**General Purpose Assistant**: RxAssistant (via AI Table)
+**AI Agents:**
 - 🔍 **Drug Classification** - Instantly classify medications (Antibiotic, Analgesic, etc.)
 - 💊 **Smart Recommendations** - Get personalized drug suggestions based on symptoms
 - ⚠️ **Side Effects Checker** - Comprehensive side effects analysis
 - 🛡️ **Allergy-Safe Search** - Find safe alternatives for patients with allergies
+**Command based input**:
+- ⌨️ **Command-based Interaction** - Use simple slash commands like /classify, /recommend, etc.
+- 🎙️ **Voice Interaction** - Talk to RxQuery for hands-free health queries
 - 🎨 **Beautiful UI/UX** - Chat-based interface with real-time updates
 
 ### 🛠️ MindsDB Deep Dive~
-upcominggg
+RxQuery leverages MindsDB's advanced AI capabilities, especially:
+- 📚 Knowledge Bases → Drug databases and symptom mappings to help agents answer accurately
 
+- 🧠 Agents → Modular AI agents like:
 
+`classify_agent, recommend_agent, side_effects_agent, allergy_agent, history_agent`
+
+- 💾 AI Tables → `rx_assistant` that we use for general queries uses Mindsdb Table ( Power of AI by abstracting AI models as Generative AI Tables.)
+
+### Evaluation via Groq
+
+To benchmark agent speed and consistency, we also experimented with Groq for lightning-fast transformer inference. This gave insights into model!
+
+### Editor Code Included
+
+For reference and reproducibility, we’ve also included our MindsDB SQL/Editor code (used to create agents, AI tables, and knowledge bases) in this repository. You’ll find exact prompts, configurations, and MindsDB commands to recreate or extend the project.
 
 ## 🚀 Quick Start
 
@@ -48,27 +66,38 @@ npm run dev
 ```
 
 ### Usage Examples
-```bash
-# Classification
-/classify paracetamol
-→ Result: "Analgesic/Antipyretic"
+| Command         | Example                   | Result                                                |
+| --------------- | ------------------------- | ----------------------------------------------------- |
+| `/classify`     | `/classify paracetamol`   | → *"Analgesic / Antipyretic"*                         |
+| `/recommend`    | `/recommend headache`     | → *"Paracetamol 500mg every 6 hours"*                 |
+| `/side-effects` | `/side-effects Ibuprofen` | → *"Stomach upset, kidney issues with long-term use"* |
+| `/allergy`      | `/allergy penicillin`     | → *"Try Azithromycin (macrolide class)"*              |
+| `/general`      | `/general tired and dizzy`| → *"Drink warm water, eat light foods and take dolo." |              |
 
-# Recommendations  
-/recommend headache
-→ Result: "Paracetamol 500mg every 6 hours"
-
-# Side Effects
-/side-effects Ibuprofen
-→ Result: "Stomach upset, kidney issues with long-term use"
-```
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js 14, TypeScript, Tailwind CSS, Framer Motion, Shadcn, MVPBlocks
 - **Backend**: FastAPI, Python, Pydantic
+- **🧠 MindsDB**
+
+   -  `CREATE KNOWLEDGE_BASE, INSERT INTO, CREATE INDEX`(chromadb)
+
+   - **CHAINED Multi AGENTS** using `CREATE AGENT` for each feature (/classify, /recommend, /side-effects, etc.)
+
+   - `EVALUATE KNOWLEDGE_BASE` with Groq for document scoring
+
+   - `CREATE JOB` to ingest drug data periodically
+   - `SELECT ... WHERE content LIKE ` in semanticss!
+
+   - `metadata_columns` to enable hybrid semantic + SQL filtering
+
+   - `CREATE MODEL rx_assistant` with OpenAI for reasoning and classification
+
+   - **KB_EVALUATE**: Groq LLM, **AI TABLES**: OpenAI, **AGENTS**: OpenAI, Ollama (experimental, model removed)
+   - 🧪 Editor: Our MindsDB SQL Editor code is included as reference for building/debugging Agents and KB queries.
+
 p.s **KNOWLEDGE BASES, AGENTS AND AI TABLES** powered by MindsDB!
-
-
 
 ## 🎥 Screenshots
 

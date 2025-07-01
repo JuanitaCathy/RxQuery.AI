@@ -110,3 +110,7 @@ CREATE JOB drug_kb_updater AS (
     WHERE id > COALESCE(LAST, 0)
 )
 EVERY 1 hour;
+
+-- Evaluate Knowledge Base
+ 
+Checkout the `/backend/knowledge_base.py` for evaluation code~
